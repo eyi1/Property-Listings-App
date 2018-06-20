@@ -14,16 +14,18 @@
 ActiveRecord::Schema.define(version: 20180620183926) do
 
   create_table "properties", force: :cascade do |t|
+    t.string  "name"
     t.integer "price"
     t.string  "location"
     t.string  "description"
     t.string  "amenities"
+    t.string  "available_for"
     t.integer "user_id"
     t.integer "property_type_id"
   end
 
   create_table "property_types", force: :cascade do |t|
-    t.string "type"
+    t.string "name"
   end
 
   create_table "users", force: :cascade do |t|
