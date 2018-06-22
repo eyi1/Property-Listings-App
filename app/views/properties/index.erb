@@ -1,0 +1,12 @@
+<div class="content">
+
+<ul>
+<%@property.each do |property|%>
+    
+    <li>Name: <strong><%=property.name%></strong></li>
+    <li>Location: <%=property.location%></li>
+    <li>Price: $<%=property.price%></li>
+    </br></br>
+<%end%>
+</ul>
+</div>
