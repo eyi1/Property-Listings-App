@@ -1,0 +1,2 @@
+class PropertyTypesController < ApplicationController
+end
