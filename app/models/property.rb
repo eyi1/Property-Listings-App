@@ -1,5 +1,6 @@
 class Property < ActiveRecord::Base
     belongs_to :user
-    belongs_to :property_type
     has_many :amenities
+    has_many :property_property_types
+    has_many :property_types, :through => :property_property_types
 end

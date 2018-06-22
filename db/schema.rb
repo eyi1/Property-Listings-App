@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180622163439) do
+ActiveRecord::Schema.define(version: 20180622175607) do
 
   create_table "amenities", force: :cascade do |t|
     t.string  "name"
@@ -26,6 +26,11 @@ ActiveRecord::Schema.define(version: 20180622163439) do
     t.string  "amenities"
     t.string  "available_for"
     t.integer "user_id"
+    t.integer "property_type_id"
+  end
+
+  create_table "property_property_types", force: :cascade do |t|
+    t.integer "property_id"
     t.integer "property_type_id"
   end
 
