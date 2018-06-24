@@ -1,0 +1,28 @@
+Image:
+<p>Name: <%=@property.name%></p>
+<p>Location: <%=@property.location%></p>
+<p>Price: $<%=@property.price%></p>
+<p>Description: <%=@property.description%></p>
+<p>
+Amenities: 
+ <%@property.amenities.each do |amenity|%>
+    <%=amenity.name%> </br>
+ <%end%>
+</p>
+<p>
+Property Type: 
+ <%@property.property_types.each do |property_type|%>
+    <%=property_type.name%> </br>
+ <%end%> 
+
+</p>
+<p>Available For: <%=@property.available_for%></p>
+
+</br>
+<form action="/properties/<%=@property.id%>/delete" method="post">
+ <input id="hidden" type="hidden" name="_method" value="DELETE">
+ <input type="submit" value="Delete Listing"> </br></br>
+ <a href="/properties/<%=@property.id%>/edit">Edit Post</a> </br>
+ <a href="/properties">Back to Properties</a>
+</form>
+

@@ -3,7 +3,7 @@
 <ul>
 <%@property.each do |property|%>
     
-    <li>Name: <strong><%=property.name%></strong></li>
+    <li>Name: <a href="/properties/<%=property.id%>"><strong><%=property.name%></strong></a></li>
     <li>Location: <%=property.location%></li>
     <li>Price: $<%=property.price%></li>
     </br></br>

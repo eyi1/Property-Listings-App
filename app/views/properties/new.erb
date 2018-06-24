@@ -1,21 +1,23 @@
 <h2>Create New Property</h2>
 
+<form action = '/properties' method="post">
     <p>
      Name:
-     <input type="text" name="name">
+     <input type="text" name="property[name]">
     </p>    
     <p>
     Location:
-     <input type="text" name="location" placeholder="city, state">
+     <input type="text" name="property[location]" placeholder="city, state">
     </p>
     <p>Price: $
-    <input type="text" name="price">
+    <input type="text" name="property[price]">
     </p>
 
     <p>
     Property Type:
     <%PropertyType.all.each do |property_type|%>
-        <input type="checkbox" id="property_<%=property.id%>" name="property_type[name]" value="<%=property.id%>"><%=property_type.name%></input>
+        <label><%=property_type.name%></label>
+        <input type="checkbox" id="property_type_<%=property_type.id%>" name="property[property_type_ids][]" value="<%=property_type.id%>">
     <%end%>
     </p>
 
@@ -26,12 +28,12 @@
 
     <p>
      Description: 
-     <input type="text" name="description">
+     <input type="text" name="property[description]">
     </p>
     <p>
      Amenities: 
      <%Amenity.all.each do |amenity|%>
-        <input type="checkbox" id="amenity_<%=amenity.id%>" name="property[amenity_ids]" value="<%=amenity.id%>"><%=amenity.name%></input>
+        <input type="checkbox" id="amenity_<%=amenity.id%>" name="property[amenity_ids][]" value="<%=amenity.id%>"><%=amenity.name%></input>
      <%end%>
     </p>
     <p>
@@ -40,7 +42,8 @@
     </p>
     <p>
      Available for: 
-     <input type="text" name="available_for" placeholder="rent or sale">
+     <input type="text" name="property[available_for]" placeholder="rent or sale">
     </p>
     </br>
      <input type="submit" value="Create New">
+</form>

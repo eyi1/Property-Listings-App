@@ -1,0 +1,51 @@
+<form action="/properties/<%=@property.id%>" method="post">
+ <input id="hidden" type="hidden" name="_method" value="PATCH">
+
+ <p>
+     Name:
+     <input type="text" name="property[name]" value="<%=@property.name%>">
+    </p>    
+    <p>
+    Location:
+     <input type="text" name="property[location]" value="<%=@property.location%>" placeholder="city, state">
+    </p>
+    <p>Price: $
+    <input type="text" name="property[price]" value="<%=@property.price%>">
+    </p>
+
+    <p>
+    Property Type:
+    <%PropertyType.all.each do |property_type|%>
+        <label><%=property_type.name%></label>
+        <input type="checkbox" id="property_type_<%=property_type.id%>" name="property[property_type_ids][]" value="<%=property_type.id%>" <%='checked' if @property.property_types.include?(property_type) %>>
+    <%end%>
+    </p>
+
+    <p>
+    add new property type:
+    <input type="text" name="property_type[name]">
+    </p>
+
+    <p>
+     Description: 
+     <input type="text" name="property[description]" value="<%@property.description%>">
+    </p>
+    <p>
+     Amenities: 
+     <%Amenity.all.each do |amenity|%>
+        <label><%=amenity.name%></label>
+        <input type="checkbox" id="amenity_<%=amenity.id%>" name="property[amenity_ids][]" value="<%=amenity.id%>" <%= 'checked' if @property.amenities.include?(amenity)%>>
+     <%end%>
+    </p>
+    <p>
+    add new amenity: 
+    <input type="text" name="amenity[name]">
+    </p>
+    <p>
+     Available for: 
+     <input type="text" name="property[available_for]" value="<%@property.available_for%>">
+     </br></br>
+
+ <input type="submit" value="Update"> </br></br>
+ <a href="/properties">Back to Properties</a>
+</form>
