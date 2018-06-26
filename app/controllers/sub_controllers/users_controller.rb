@@ -1,4 +1,7 @@
+require 'rack-flash'
+
 class UsersController < ApplicationController
+    use Rack::Flash
     
     get '/users/:id' do 
         authenticate_user
@@ -21,14 +24,32 @@ class UsersController < ApplicationController
     end 
 
     post '/signup' do
-        if params[:name] == "" || params[:username] == "" || params[:email] == "" || params[:password] == ""
-            redirect to '/signup' 
-        else
-            @user = User.create(name: params[:name], username: params[:username], email: params[:email], password: params[:password])
-            @user.save 
+
+        @user = User.new(params)
+        # @user.name = params[:name]
+        # @user.username = params[:username]
+        # @user.email = params[:email]
+        # @user.password = password[:password]
+        @user.save 
+        if @user.save 
             session[:user_id] = @user.id 
             redirect to "/users/#{@user.id}" 
-        end 
+        else
+            flash[:error] = "Error: Wrong format"
+            redirect to '/signup' 
+        end
+
+
+        # if params[:name] == "" || params[:username] == "" || params[:email] == "" || params[:password] == ""
+            
+        #     flash[:error] = "Please fill in the following fields"
+        #     redirect to '/signup' 
+        # else
+        #     @user = User.create(name: params[:name], username: params[:username], email: params[:email], password: params[:password])
+        #     @user.save 
+        #     session[:user_id] = @user.id 
+        #     redirect to "/users/#{@user.id}" 
+        # end 
     end
 
     get '/login' do 
@@ -45,7 +66,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id 
             redirect to "/users/#{@user.id}"
         else
-            @login_error = "invalid username and password"
+            flash[:error] = "Couldn't find username and password"
             redirect to '/login'
         end
     end
