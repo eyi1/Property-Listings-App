@@ -64,6 +64,7 @@ class UsersController < ApplicationController
         @user = User.find_by(username: params[:username])
         if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id 
+            flash[:successful] = "Successfully logged in!"
             redirect to "/users/#{@user.id}"
         else
             flash[:error] = "Couldn't find username and password"
@@ -74,6 +75,7 @@ class UsersController < ApplicationController
     get '/logout' do
         if logged_in?
           session.destroy
+          flash[:successful] = "Successfully logged out!"
           redirect to '/login'
         else
           redirect to '/'

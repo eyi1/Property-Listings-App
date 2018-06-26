@@ -6,5 +6,5 @@ class Property < ActiveRecord::Base
     has_many :property_property_types
     has_many :property_types, :through => :property_property_types
 
-    #validates :name, :location, :price, :desciption, :available_for, presence: true, message: "fill in all blank fields"
+    validates :name, :location, :price, :desciption, :available_for, presence: true
 end

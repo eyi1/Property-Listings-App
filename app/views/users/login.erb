@@ -1,8 +1,9 @@
 <% if flash.has?(:error) %>
     <%= flash[:error] %>
+  <%else%>
+    <%= flash[:successful] %>
 <% end %>
-
-<br/><br/>
+<br/>
 
 <h2>Login</h2>
 
