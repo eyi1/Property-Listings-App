@@ -1,11 +1,9 @@
-<h2><%=@user.name%></h2>
-<h3><%=@user.username%></h3>
-</br></br>
-<p><a href="/properties">View my property listings</a></p>
-
-<p><a href="/properties/new">Post a property listing</a></p>
-
-<p>Go to market place</p>
-
-</br></br>
-<a href="/logout">Logout</a>
+<%if @user == current_user%>
+    <%current_user.properties.each do |property|%>
+        <li>Name: <a href="/properties/<%=property.id%>"><strong><%=property.name%></strong></a></li>
+        <li>Location: <%=property.location%></li>
+        <li>Price: $ <%=property.price%></li>
+    <%end%>
+<%end%>
+</br>
+<a href="/users/<%=current_user.id%>">Back to My Account</a>

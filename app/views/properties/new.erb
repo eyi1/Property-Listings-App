@@ -2,48 +2,51 @@
 
 <form action = '/properties' method="post">
     <p>
-     Name:
-     <input type="text" name="property[name]">
+    Name:
+    <input type="text" required name="property[name]">
     </p>    
+    
     <p>
     Location:
-     <input type="text" name="property[location]" placeholder="city, state">
+     input type="text" required name="property[location]" placeholder="city, state">
     </p>
+    
     <p>Price: $
-    <input type="text" name="property[price]">
+    <input type="text" required name="property[price]">
     </p>
 
     <p>
     Property Type:
     <%PropertyType.all.each do |property_type|%>
+        <input type="radio" id="property_type_<%=property_type.id%>" name="property[property_type_ids][]" value="<%=property_type.id%>">
         <label><%=property_type.name%></label>
-        <input type="checkbox" id="property_type_<%=property_type.id%>" name="property[property_type_ids][]" value="<%=property_type.id%>">
     <%end%>
     </p>
 
     <p>
-    add new property type:
-    <input type="text" name="property_type[name]">
+    Description: 
+    <input type="text" required name="property[description]">
     </p>
-
-    <p>
-     Description: 
-     <input type="text" name="property[description]">
-    </p>
+    
     <p>
      Amenities: 
      <%Amenity.all.each do |amenity|%>
-        <input type="checkbox" id="amenity_<%=amenity.id%>" name="property[amenity_ids][]" value="<%=amenity.id%>"><%=amenity.name%></input>
+        <input type="checkbox" id="amenity_<%=amenity.id%>" name="property[amenity_ids][]" value="<%=amenity.id%>">
+        <label><%=amenity.name%></label>
      <%end%>
     </p>
+    
     <p>
     add new amenity: 
     <input type="text" name="amenity[name]">
     </p>
+    
     <p>
      Available for: 
-     <input type="text" name="property[available_for]" placeholder="rent or sale">
-    </p>
-    </br>
-     <input type="submit" value="Create New">
+     <input type="text" required name="property[available_for]" placeholder="rent or sale">
+    </p></br>
+    
+     <input type="submit" value="Create New"></br></br>
+    
+     <a href="/properties">Back to Listings</a>
 </form>

@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
     
     get '/users/:id' do 
+        authenticate_user
+        @user = User.find_by_id(params[:id])
+        erb :'/users/index'
+    end
+
+    get '/users/:id/properties' do
+        authenticate_user
         @user = User.find_by_id(params[:id])
         erb :'/users/show'
     end
@@ -38,6 +45,7 @@ class UsersController < ApplicationController
             session[:user_id] = @user.id 
             redirect to "/users/#{@user.id}"
         else
+            @login_error = "invalid username and password"
             redirect to '/login'
         end
     end

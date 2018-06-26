@@ -1,12 +1,13 @@
 <div class="content">
+    <h3>All Listings</h3>
+    <ul>
+    <%@property.each do |property|%> 
+        <li>Name: <a href="/properties/<%=property.id%>"><strong><%=property.name%></strong></a></li>
+        <li>Location: <%=property.location%></li>
+        <li>Price: $<%=property.price%></li></br></br>
+    <%end%>
+    </ul>
 
-<ul>
-<%@property.each do |property|%>
-    
-    <li>Name: <a href="/properties/<%=property.id%>"><strong><%=property.name%></strong></a></li>
-    <li>Location: <%=property.location%></li>
-    <li>Price: $<%=property.price%></li>
-    </br></br>
-<%end%>
-</ul>
+    <a href="/properties/new">Create New Listing</a> </br>
+    <a href="/users/<%=current_user.id%>">Back to My Account</a>
 </div>

@@ -1,57 +1,52 @@
 class PropertiesController < ApplicationController
+    
 
     get '/properties' do 
+        authenticate_user
         @property = Property.all
-        if logged_in?
-            erb :'/properties/index'
-        else
-            redirect to '/login'
-        end
+        erb :'/properties/index'
+        #logged_in? ? (erb :'/properties/index') : (redirect to '/login')    
     end
 
     get '/properties/new' do 
-        if logged_in?
-            erb :'/properties/new'
-        else
-            redirect to '/login'
-        end
-    end 
+        authenticate_user
+        erb :'/properties/new'
+    end
 
     post '/properties' do 
-        if logged_in?
+        authenticate_user
             if !params[:property].empty?
                 @property = Property.create(params[:property])
-                current_user.properties << @property #current_user.properties.build(params[:property])
+
+                if !params[:amenity][:name].empty?
+                    @property.amenities << Amenity.create(params[:amenity])
+                end
+    
+                current_user.properties << @property #if @property.users.id == current_user.id #current_user.properties.build(params[:property])
                 current_user.save
                 redirect to '/properties'
             else
                 redirect to '/properties/new'
             end
-        else
-            redirect to '/login'
-        end
     end
+
 
     get '/properties/:id' do     
-        if logged_in?
-            @property = Property.find(params[:id])  
-            erb :'/properties/show'
-        end 
-        #else....
-    end
+        authenticate_user
+        @property = Property.find(params[:id])  
+        erb :'/properties/show' 
+    end 
 
-   get '/properties/:id/edit' do 
-        if logged_in?
+    get '/properties/:id/edit' do
+        authenticate_user
          @property = Property.find(params[:id]) 
-           if @property && @property.user == current_user
+           if @property && @property.user == current_user 
              erb :'/properties/edit'
            end
-           #else....
-        end
     end
 
     patch '/properties/:id' do 
-        #if logged_in?
+        authenticate_user
         @property = Property.find_by_id(params[:id])
         if !params[:property].empty? && @property && @property.user == current_user
             @property.update(params[:property])
@@ -73,18 +68,14 @@ class PropertiesController < ApplicationController
     end
 
     delete '/properties/:id/delete' do 
-        if logged_in?
-            @property = Property.find_by_id(params[:id])
-            if @property && @property.user = current_user
+        authenticate_user
+        @property = Property.find_by_id(params[:id])
+            if @property && @property.user == current_user
                 @property.delete
                 redirect to '/properties'
-            end
-        else
-            redirect to '/login'
-        end
-
+            #else 
+                #failure (message)
+            end 
     end
-
-
 
 end
