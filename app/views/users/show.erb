@@ -1,8 +1,10 @@
+<h2><%=current_user.name%>'s Property Listings</h2>
 <%if @user == current_user%>
     <%current_user.properties.each do |property|%>
         <li>Name: <a href="/properties/<%=property.id%>"><strong><%=property.name%></strong></a></li>
         <li>Location: <%=property.location%></li>
         <li>Price: $ <%=property.price%></li>
+        </br>
     <%end%>
 <%end%>
 </br>

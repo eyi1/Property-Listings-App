@@ -18,18 +18,14 @@ class UsersController < ApplicationController
     get '/signup' do 
         if !logged_in?
             erb :'/users/create_user' 
-        else 
-            redirect to '/'
+        else
+            @user_id = session[:user_id]
+            redirect to "/users/#{@user_id}"
         end
     end 
 
     post '/signup' do
-
         @user = User.new(params)
-        # @user.name = params[:name]
-        # @user.username = params[:username]
-        # @user.email = params[:email]
-        # @user.password = password[:password]
         @user.save 
         if @user.save 
             session[:user_id] = @user.id 
@@ -38,8 +34,6 @@ class UsersController < ApplicationController
             flash[:error] = "Error: Wrong format"
             redirect to '/signup' 
         end
-
-
         # if params[:name] == "" || params[:username] == "" || params[:email] == "" || params[:password] == ""
             
         #     flash[:error] = "Please fill in the following fields"
@@ -56,7 +50,8 @@ class UsersController < ApplicationController
         if !logged_in?
             erb :'/users/login'
         else
-            redirect to '/login'
+            @user_id = session[:user_id]
+            redirect to "/users/#{@user_id}"
         end
     end
 

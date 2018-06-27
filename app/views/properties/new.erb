@@ -2,47 +2,61 @@
 
 <form action = '/properties' method="post">
     <p>
-    Name:
+    <strong>Name:</strong>
     <input type="text" required name="property[name]">
     </p>    
     
     <p>
-    Location:
-     input type="text" required name="property[location]" placeholder="city, state">
+    <strong>Location:</strong>
+     <input type="text" required name="property[location]" placeholder="city, state">
     </p>
     
-    <p>Price: $
+    <p>
+    <strong>Price: $</strong>
     <input type="text" required name="property[price]">
     </p>
 
     <p>
-    Property Type:
+    <ul>
+    <strong>Property Type:</strong>
     <%PropertyType.all.each do |property_type|%>
-        <input type="radio" id="property_type_<%=property_type.id%>" name="property[property_type_ids][]" value="<%=property_type.id%>">
-        <label><%=property_type.name%></label>
+        <li>
+        <input type="checkbox" id="property_type_<%=property_type.id%>" name="property[property_type_ids][]" value="<%=property_type.id%>">
+        <%=property_type.name%></input>
+        </li>
     <%end%>
+    </ul>
     </p>
 
     <p>
-    Description: 
+    Add new property type:
+    <input type="text" id= "new_property_type" name="property_type[name]">
+    </p>
+
+    <p>
+    <strong>Description:</strong> 
     <input type="text" required name="property[description]">
     </p>
     
     <p>
-     Amenities: 
+    <ul>
+     <strong>Amenities:</strong> 
      <%Amenity.all.each do |amenity|%>
+        <li>
         <input type="checkbox" id="amenity_<%=amenity.id%>" name="property[amenity_ids][]" value="<%=amenity.id%>">
-        <label><%=amenity.name%></label>
+        <%=amenity.name%></input>
+        </li>
      <%end%>
+     </ul>
     </p>
     
     <p>
-    add new amenity: 
-    <input type="text" name="amenity[name]">
+    Add new amenity:
+    <input type="text" id="new_amenity" name="amenity[name]">
     </p>
     
     <p>
-     Available for: 
+     <strong>Available for:</strong> 
      <input type="text" required name="property[available_for]" placeholder="rent or sale">
     </p></br>
     

@@ -1,5 +1,10 @@
+<% if flash.has?(:error) %>
+    <%= flash[:error] %>
+<% end %>
+</br>
+
 <div class="content">
-    <h3>All Listings</h3>
+    <h2>All Property Listings</h2>
     <ul>
     <%@property.each do |property|%> 
         <li>Name: <a href="/properties/<%=property.id%>"><strong><%=property.name%></strong></a></li>

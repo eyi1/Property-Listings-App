@@ -1,28 +1,35 @@
-Image:
-<p>Name: <%=@property.name%></p>
-<p>Location: <%=@property.location%></p>
-<p>Price: $<%=@property.price%></p>
-<p>Description: <%=@property.description%></p>
+<p><strong>Name:</strong> <%=@property.name%></p>
+<p><strong>Location:</strong> <%=@property.location%></p>
+<p><strong>Price:</strong> $ <%=@property.price%></p>
+
 <p>
-Amenities: 
- <%@property.amenities.each do |amenity|%>
-    <%=amenity.name%> </br>
- <%end%>
-</p>
-<p>
-Property Type: 
- <%@property.property_types.each do |property_type|%>
-    <%=property_type.name%> </br>
+<ul>
+<strong>Property Type:</strong>
+ <%@property.property_types.map do |property_type|%>
+    <li><%=property_type.name%></li>
  <%end%> 
-
+ </ul>
 </p>
-<p>Available For: <%=@property.available_for%></p>
 
-</br>
+<p><strong>Description:</strong> <%=@property.description%></p>
+
+<p>
+<ul>
+<strong>Amenities:</strong>
+ <%@property.amenities.map do |amenity|%>
+    <li><%=amenity.name%></li>
+ <%end%>
+</ul>
+</p>
+
+<p>
+<strong>Available For:</strong> 
+<%=@property.available_for%>
+</p></br>
+
 <form action="/properties/<%=@property.id%>/delete" method="post">
  <input id="hidden" type="hidden" name="_method" value="DELETE">
  <input type="submit" value="Delete Listing"> </br></br>
  <a href="/properties/<%=@property.id%>/edit">Edit Post</a> </br>
  <a href="/properties">Back to Properties</a>
 </form>
-

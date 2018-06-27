@@ -2,49 +2,62 @@
     <input id="hidden" type="hidden" name="_method" value="PATCH">
 
     <p>
-    Name:
+    <strong>Name:</strong>
     <input type="text" required name="property[name]" value="<%=@property.name%>">
     </p>    
     
     <p>
-    Location:
+    <strong>Location:</strong>
     <input type="text" required name="property[location]" value="<%=@property.location%>" placeholder="city, state">
     </p>
     
     <p>
-    Price: $
+    <strong>Price: $</strong>
     <input type="text" required name="property[price]" value="<%=@property.price%>">
     </p>
 
     <p>
-    Property Type:
+    <ul>
+    <strong>Property Type:</strong>
     <%PropertyType.all.each do |property_type|%>
+        <li>
+        <input type="checkbox" id="property_type_<%=property_type.name%>" name="property[property_type_ids][]" value="<%=property_type.id%>" <%='checked' if @property.property_types.include?(property_type) %>>
         <label><%=property_type.name%></label>
-        <input type="radio" id="property_type_<%=property_type.id%>" name="property[property_type_ids][]" value="<%=property_type.id%>" <%='checked' if @property.property_types.include?(property_type) %>>
+        </li>
     <%end%>
+    </ul>
     </p>
     
     <p>
-    Description: 
+    Add new property type: 
+    <input type="text" id="new_property_type" name="property_type[name]">
+    </p>
+
+    <p>
+   <strong>Description:</strong> 
     <input type="text" required name="property[description]" value="<%=@property.description%>">
     </p>
     
     <p>
-    Amenities: 
+    <ul>
+    <strong>Amenities:</strong> 
     <%Amenity.all.each do |amenity|%>
+        <li>
+        <input type="checkbox" id="<%=amenity.id%>" name="property[amenity_ids][]" value="<%=amenity.id%>" <%= 'checked' if @property.amenities.include?(amenity)%>>
         <label><%=amenity.name%></label>
-        <input type="checkbox" id="amenity_<%=amenity.id%>" name="property[amenity_ids][]" value="<%=amenity.id%>" <%= 'checked' if @property.amenities.include?(amenity)%>>
+        </li>
     <%end%>
+    </ul>
     </p>
     
     <p>
     Add new amenity: 
-    <input type="text" name="amenity[name]">
+    <input type="text" id="new_amenity" name="amenity[name]">
     </p>
     
     <p>
-    Available for: 
-    <input type="text" required name="property[available_for]" value="<%@property.available_for%>">
+    <strong>Available for:</strong>
+    <input type="text" required name="property[available_for]" value="<%=@property.available_for%>">
     </br></br>
 
  <input type="submit" value="Update"> </br></br>
