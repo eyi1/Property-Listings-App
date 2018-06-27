@@ -40,14 +40,14 @@
     
     <p>
     <ul>
-     <strong>Amenities:</strong> 
-     <%Amenity.all.each do |amenity|%>
+    <strong>Amenities:</strong> 
+    <%Amenity.all.each do |amenity|%>
         <li>
         <input type="checkbox" id="amenity_<%=amenity.id%>" name="property[amenity_ids][]" value="<%=amenity.id%>">
         <%=amenity.name%></input>
         </li>
-     <%end%>
-     </ul>
+    <%end%>
+    </ul>
     </p>
     
     <p>
@@ -56,11 +56,11 @@
     </p>
     
     <p>
-     <strong>Available for:</strong> 
-     <input type="text" required name="property[available_for]" placeholder="rent or sale">
+    <strong>Available for:</strong> 
+    <input type="text" required name="property[available_for]" placeholder="rent or sale">
     </p></br>
     
-     <input type="submit" value="Create New"></br></br>
+    <input type="submit" value="Create New"></br></br>
     
-     <a href="/properties">Back to Listings</a>
+    <a href="/properties">Back to Listings</a>
 </form>

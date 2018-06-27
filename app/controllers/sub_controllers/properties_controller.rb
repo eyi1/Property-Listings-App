@@ -23,7 +23,7 @@ class PropertiesController < ApplicationController
 
     post '/properties' do 
         authenticate_user
-        if !params[:property].empty?
+            if !params[:property].empty?
                 @property = Property.create(params[:property])
 
                 if !params[:property_type][:name].empty?
