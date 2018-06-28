@@ -5,6 +5,8 @@
 
 <div class="content">
     <h2>All Property Listings</h2>
+    <h3><a href="/propertytypes">Filter by property type</a></h3>
+    <p>
     <ul>
     <%@property.each do |property|%> 
         <li>Name: <a href="/properties/<%=property.id%>"><strong><%=property.name%></strong></a></li>
@@ -12,6 +14,7 @@
         <li>Price: $<%=property.price%></li></br></br>
     <%end%>
     </ul>
+    </p>
 
     <a href="/properties/new">Create New Listing</a> </br>
     <a href="/users/<%=current_user.id%>">Back to My Account</a>

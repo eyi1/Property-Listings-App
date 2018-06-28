@@ -1,0 +1,7 @@
+<ul>
+<%@property_type.properties.each do |property|%>
+    <li><a href="/properties/<%=property.id%>"><%=property.name%></a></li>
+    <li><%=property.location%></a></li>
+    <li><%=property.price%></a></li>
+    <%end%>
+</ul>

@@ -1,0 +1,5 @@
+<ul>
+<%@property_type.each do |property_type|%>
+   <li><a href="/propertytypes/<%=property_type.id%>"><%=property_type.name%></a></li>
+<%end%>
+</ul>
