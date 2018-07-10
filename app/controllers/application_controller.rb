@@ -10,11 +10,14 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    erb :welcome
+    if !logged_in?
+      erb :welcome
+    else 
+      redirect to '/properties'
+    end
   end
 
-  helpers do 
-    
+  helpers do    
     def logged_in?
       !!current_user
     end

@@ -2,7 +2,7 @@ require 'rack-flash'
 
 class UsersController < ApplicationController
     use Rack::Flash
-    
+
     get '/users/:id' do 
         authenticate_user
         @user = User.find_by_id(params[:id])

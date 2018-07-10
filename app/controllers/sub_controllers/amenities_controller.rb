@@ -1,3 +1,2 @@
 class AmenitiesController < ApplicationController
-
 end
