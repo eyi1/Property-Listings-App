@@ -2,6 +2,9 @@
 <%@property_type.properties.each do |property|%>
     <li><a href="/properties/<%=property.id%>"><%=property.name%></a></li>
     <li><%=property.location%></a></li>
-    <li><%=property.price%></a></li>
+    <li><%=property.price%></a></li></br>
     <%end%>
 </ul>
+
+</br>
+<a href ="/propertytypes">Back to Property Types</a>
